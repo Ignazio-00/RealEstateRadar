@@ -1,12 +1,31 @@
 import React from "react";
-import properties from "@/properties.json";
 import PropertyCard from "@/components/PropertyCard";
 import Link from "next/link";
 
-const FeaturedPropertyCard = () => {
+async function fetchProperties() {
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_DOMAIN}/properties`,
+      {
+        cache: "no-store",
+      }
+    );
+    if (!res.ok) {
+      throw new Error("Failed to fetch data");
+    }
+    return await res.json();
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+const FeaturedPropertyCard = async () => {
+  const properties = await fetchProperties();
+
   const featuredProperties = properties
     .sort(() => Math.random() - Math.random())
     .slice(0, 3);
+
   return (
     <>
       <section className="px-4 py-6">
