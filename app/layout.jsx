@@ -1,20 +1,24 @@
-import "@/assets/styles/globals.css"
-import Navbar from "@/components/Navbar"
+import "@/assets/styles/globals.css";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import AuthProvider from "@/components/AuthProvider";
 
 export const metadata = {
-    title: "RealEstateRadar",
-    description: "Find the perfect Real Estate property for you",
-}
+  title: "RealEstateRadar",
+  description: "Find the perfect Real Estate property for you",
+};
 
 const MainLayout = ({ children }) => {
   return (
-    <html lang="en">
+    <AuthProvider>
+      <html lang="en">
         <body>
-            <Navbar />
-            <main>{children}</main>
+          <Navbar />
+          <main>{children}</main>
         </body>
-    </html>
-  )
-}
+      </html>
+    </AuthProvider>
+  );
+};
 
-export default MainLayout
+export default MainLayout;
