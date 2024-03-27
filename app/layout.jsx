@@ -15,6 +15,7 @@ const MainLayout = ({ children }) => {
         <body>
           <Navbar />
           <main>{children}</main>
+          <Footer />
         </body>
       </html>
     </AuthProvider>
