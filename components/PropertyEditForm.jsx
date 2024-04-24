@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 
-const PropertyAddForm = () => {
+const PropertyEditForm = () => {
   const [mounted, setMounted] = useState(false);
   const [fields, setFields] = useState({
     type: "",
@@ -27,7 +27,6 @@ const PropertyAddForm = () => {
       email: "",
       phone: "",
     },
-    images: [],
   });
 
   useEffect(() => {
@@ -74,30 +73,14 @@ const PropertyAddForm = () => {
       amenities: updatedAmenities,
     }));
   };
-  const handleImageChange = (e) => {
-    const { files } = e.target;
 
-    const updatedImages = [...fields.images];
-
-    for (const file of files) {
-      updatedImages.push(file);
-    }
-
-    setFields((prevFields) => ({
-      ...prevFields,
-      images: updatedImages,
-    }));
-  };
+  const handleSubmit = async () => {};
 
   return (
     mounted && (
-      <form
-        action="/api/properties"
-        method="POST"
-        encType="multipart/form-data"
-      >
+      <form onSubmit={handleSubmit}>
         <h2 className="text-3xl text-center font-semibold mb-6">
-          Add Property
+          Edit Property
         </h2>
         <div className="mb-4">
           <label htmlFor="type" className="block text-gray-700 font-bold mb-2">
@@ -546,31 +529,12 @@ const PropertyAddForm = () => {
           />
         </div>
 
-        <div className="mb-4">
-          <label
-            htmlFor="images"
-            className="block text-gray-700 font-bold mb-2"
-          >
-            Images (Select up to 4 images)
-          </label>
-          <input
-            type="file"
-            id="images"
-            name="images"
-            className="border rounded w-full py-2 px-3"
-            accept="image/*"
-            multiple
-            onChange={handleImageChange}
-            required
-          />
-        </div>
-
         <div>
           <button
             className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline"
             type="submit"
           >
-            Add Property
+            Update Property
           </button>
         </div>
       </form>
@@ -578,4 +542,4 @@ const PropertyAddForm = () => {
   );
 };
 
-export default PropertyAddForm;
+export default PropertyEditForm;
