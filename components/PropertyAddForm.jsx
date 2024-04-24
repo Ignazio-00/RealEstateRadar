@@ -460,7 +460,7 @@ const PropertyAddForm = () => {
                 id="weekly_rate"
                 name="rates.weekly"
                 className="border rounded w-full py-2 px-3"
-                value={fields.rates.weekly}
+                value={fields.rates.weekly || ""}
                 onChange={handleChange}
               />
             </div>
@@ -473,7 +473,7 @@ const PropertyAddForm = () => {
                 id="monthly_rate"
                 name="rates.monthly"
                 className="border rounded w-full py-2 px-3"
-                value={fields.rates.monthly}
+                value={fields.rates.monthly || ""}
                 onChange={handleChange}
               />
             </div>
@@ -486,7 +486,7 @@ const PropertyAddForm = () => {
                 id="nightly_rate"
                 name="rates.nightly"
                 className="border rounded w-full py-2 px-3"
-                value={fields.rates.nightly}
+                value={fields.rates.nightly || ""}
                 onChange={handleChange}
               />
             </div>
