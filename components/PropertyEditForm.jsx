@@ -1,7 +1,13 @@
 "use client";
 import { useState, useEffect } from "react";
+import { useParams, useRouter } from "next/navigation";
+import { toast } from "react-toastify";
+import { fetchProperty } from "@/utils/requests";
 
 const PropertyEditForm = () => {
+  const { id } = useParams();
+  const router = useRouter();
+
   const [mounted, setMounted] = useState(false);
   const [fields, setFields] = useState({
     type: "",
@@ -29,8 +35,24 @@ const PropertyEditForm = () => {
     },
   });
 
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     setMounted(true);
+    // Fetch property data for form
+    const fetchPropertyData = async () => {
+      try {
+        const propertyData = await fetchProperty(id);
+
+        setFields(propertyData);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPropertyData();
   }, []);
 
   const handleChange = (e) => {
@@ -77,7 +99,8 @@ const PropertyEditForm = () => {
   const handleSubmit = async () => {};
 
   return (
-    mounted && (
+    mounted &&
+    !loading && (
       <form onSubmit={handleSubmit}>
         <h2 className="text-3xl text-center font-semibold mb-6">
           Edit Property
@@ -243,7 +266,7 @@ const PropertyEditForm = () => {
                 id="amenity_wifi"
                 name="amenities"
                 value="Wifi"
-                classNameName="mr-2"
+                className="mr-2"
                 checked={fields.amenities.includes("Wifi")}
                 onChange={handleAmenitiesChange}
               />
@@ -255,7 +278,7 @@ const PropertyEditForm = () => {
                 id="amenity_kitchen"
                 name="amenities"
                 value="Full Kitchen"
-                classNameName="mr-2"
+                className="mr-2"
                 checked={fields.amenities.includes("Full Kitchen")}
                 onChange={handleAmenitiesChange}
               />
@@ -267,7 +290,7 @@ const PropertyEditForm = () => {
                 id="amenity_washer_dryer"
                 name="amenities"
                 value="Washer & Dryer"
-                classNameName="mr-2"
+                className="mr-2"
                 checked={fields.amenities.includes("Washer & Dryer")}
                 onChange={handleAmenitiesChange}
               />
@@ -279,7 +302,7 @@ const PropertyEditForm = () => {
                 id="amenity_free_parking"
                 name="amenities"
                 value="Free Parking"
-                classNameName="mr-2"
+                className="mr-2"
                 checked={fields.amenities.includes("Free Parking")}
                 onChange={handleAmenitiesChange}
               />
@@ -291,7 +314,7 @@ const PropertyEditForm = () => {
                 id="amenity_pool"
                 name="amenities"
                 value="Swimming Pool"
-                classNameName="mr-2"
+                className="mr-2"
                 checked={fields.amenities.includes("Swimming Pool")}
                 onChange={handleAmenitiesChange}
               />
@@ -303,7 +326,7 @@ const PropertyEditForm = () => {
                 id="amenity_hot_tub"
                 name="amenities"
                 value="Hot Tub"
-                classNameName="mr-2"
+                className="mr-2"
                 checked={fields.amenities.includes("Hot Tub")}
                 onChange={handleAmenitiesChange}
               />
@@ -315,7 +338,7 @@ const PropertyEditForm = () => {
                 id="amenity_24_7_security"
                 name="amenities"
                 value="24/7 Security"
-                classNameName="mr-2"
+                className="mr-2"
                 checked={fields.amenities.includes("24/7 Security")}
                 onChange={handleAmenitiesChange}
               />
@@ -327,7 +350,7 @@ const PropertyEditForm = () => {
                 id="amenity_wheelchair_accessible"
                 name="amenities"
                 value="Wheelchair Accessible"
-                classNameName="mr-2"
+                className="mr-2"
                 checked={fields.amenities.includes("Wheelchair Accessible")}
                 onChange={handleAmenitiesChange}
               />
@@ -342,7 +365,7 @@ const PropertyEditForm = () => {
                 id="amenity_elevator_access"
                 name="amenities"
                 value="Elevator Access"
-                classNameName="mr-2"
+                className="mr-2"
                 checked={fields.amenities.includes("Elevator Access")}
                 onChange={handleAmenitiesChange}
               />
@@ -354,7 +377,7 @@ const PropertyEditForm = () => {
                 id="amenity_dishwasher"
                 name="amenities"
                 value="Dishwasher"
-                classNameName="mr-2"
+                className="mr-2"
                 checked={fields.amenities.includes("Dishwasher")}
                 onChange={handleAmenitiesChange}
               />
@@ -366,7 +389,7 @@ const PropertyEditForm = () => {
                 id="amenity_gym_fitness_center"
                 name="amenities"
                 value="Gym/Fitness Center"
-                classNameName="mr-2"
+                className="mr-2"
                 checked={fields.amenities.includes("Gym/Fitness Center")}
                 onChange={handleAmenitiesChange}
               />
@@ -381,7 +404,7 @@ const PropertyEditForm = () => {
                 id="amenity_air_conditioning"
                 name="amenities"
                 value="Air Conditioning"
-                classNameName="mr-2"
+                className="mr-2"
                 checked={fields.amenities.includes("Air Conditioning")}
                 onChange={handleAmenitiesChange}
               />
@@ -396,7 +419,7 @@ const PropertyEditForm = () => {
                 id="amenity_balcony_patio"
                 name="amenities"
                 value="Balcony/Patio"
-                classNameName="mr-2"
+                className="mr-2"
                 checked={fields.amenities.includes("Balcony/Patio")}
                 onChange={handleAmenitiesChange}
               />
@@ -408,7 +431,7 @@ const PropertyEditForm = () => {
                 id="amenity_smart_tv"
                 name="amenities"
                 value="Smart TV"
-                classNameName="mr-2"
+                className="mr-2"
                 checked={fields.amenities.includes("Smart TV")}
                 onChange={handleAmenitiesChange}
               />
@@ -420,7 +443,7 @@ const PropertyEditForm = () => {
                 id="amenity_coffee_maker"
                 name="amenities"
                 value="Coffee Maker"
-                classNameName="mr-2"
+                className="mr-2"
                 checked={fields.amenities.includes("Coffee Maker")}
                 onChange={handleAmenitiesChange}
               />
@@ -443,7 +466,7 @@ const PropertyEditForm = () => {
                 id="weekly_rate"
                 name="rates.weekly"
                 className="border rounded w-full py-2 px-3"
-                value={fields.rates.weekly}
+                value={fields.rates.weekly || ""}
                 onChange={handleChange}
               />
             </div>
@@ -456,7 +479,7 @@ const PropertyEditForm = () => {
                 id="monthly_rate"
                 name="rates.monthly"
                 className="border rounded w-full py-2 px-3"
-                value={fields.rates.monthly}
+                value={fields.rates.monthly || ""}
                 onChange={handleChange}
               />
             </div>
@@ -469,7 +492,7 @@ const PropertyEditForm = () => {
                 id="nightly_rate"
                 name="rates.nightly"
                 className="border rounded w-full py-2 px-3"
-                value={fields.rates.nightly}
+                value={fields.rates.nightly || ""}
                 onChange={handleChange}
               />
             </div>
