@@ -8,6 +8,7 @@ import PropertyDetails from "@/components/PropertyDetails";
 import PropertyImages from "@/components/PropertyImages";
 import { FaArrowLeft } from "react-icons/fa";
 import Spinner from "@/components/Spinner";
+import BookmarkButton from "@/components/BookmarkButton";
 
 const PropertyPage = () => {
   const { id } = useParams();
@@ -54,9 +55,7 @@ const PropertyPage = () => {
               <div className="grid grid-cols-1 md:grid-cols-70/30 w-full gap-6">
                 <PropertyDetails property={property} />
                 <aside className="space-y-4">
-                  <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold w-full py-2 px-4 rounded-full flex items-center justify-center">
-                    <i className="fas fa-bookmark mr-2"></i> Bookmark Property
-                  </button>
+                  <BookmarkButton property={property} />
                   <button className="bg-orange-500 hover:bg-orange-600 text-white font-bold w-full py-2 px-4 rounded-full flex items-center justify-center">
                     <i className="fas fa-share mr-2"></i> Share Property
                   </button>
