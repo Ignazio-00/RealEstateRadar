@@ -9,6 +9,7 @@ const BookmarkButton = ({ property }) => {
   const userId = session?.user?.id;
 
   const [isBookmarked, setIsBookmarked] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const checkBookmarkStatus = async () => {
@@ -29,6 +30,8 @@ const BookmarkButton = ({ property }) => {
         }
       } catch (error) {
         console.log(error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -62,6 +65,8 @@ const BookmarkButton = ({ property }) => {
       toast.error("Something went wrong");
     }
   };
+
+  if (loading) return <p className="text-center">Loading...</p>;
 
   return isBookmarked ? (
     <button
