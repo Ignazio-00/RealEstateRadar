@@ -12,6 +12,10 @@ const BookmarkButton = ({ property }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    if (!userId) {
+      setLoading(false);
+      return;
+    }
     const checkBookmarkStatus = async () => {
       try {
         const res = await fetch("/api/bookmarks/check", {
