@@ -10,6 +10,31 @@ const BookmarkButton = ({ property }) => {
 
   const [isBookmarked, setIsBookmarked] = useState(false);
 
+  useEffect(() => {
+    const checkBookmarkStatus = async () => {
+      try {
+        const res = await fetch("/api/bookmarks/check", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            propertyId: property._id,
+          }),
+        });
+
+        if (res.status === 200) {
+          const data = await res.json();
+          setIsBookmarked(data.isBookmarked);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    checkBookmarkStatus();
+  }, [property._id, userId]);
+
   const handleClick = async () => {
     if (!userId) {
       toast.error("Please sign in to bookmark a property!");
