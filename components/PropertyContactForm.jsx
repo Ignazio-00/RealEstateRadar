@@ -1,6 +1,14 @@
+"use client";
+import { useState } from "react";
 import { FaPaperPlane } from "react-icons/fa";
 
-const PropertyContactForm = () => {
+const PropertyContactForm = ({ property }) => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [phone, setPhone] = useState("");
+  const [wasSubmitted, setWasSubmitted] = useState(false);
+
   return (
     <div className="bg-white p-6 rounded-lg shadow-md">
       <h3 className="text-xl font-bold mb-6">Contact Property Manager</h3>
