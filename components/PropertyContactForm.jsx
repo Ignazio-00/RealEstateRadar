@@ -9,7 +9,22 @@ const PropertyContactForm = ({ property }) => {
   const [phone, setPhone] = useState("");
   const [wasSubmitted, setWasSubmitted] = useState(false);
 
-  const handleSubmit = () => {};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const data = {
+      name,
+      email,
+      phone,
+      message,
+      recipient: property.owner,
+      property: property._id,
+    };
+
+    console.log(data);
+
+    setWasSubmitted(true);
+  };
 
   return (
     <div className="bg-white p-6 rounded-lg shadow-md">
