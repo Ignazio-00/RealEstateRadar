@@ -1,15 +1,18 @@
 "use client";
 import { useState } from "react";
 import { FaPaperPlane } from "react-icons/fa";
+import { toast } from "react-toastify";
+import { useSession } from "next-auth/react";
 
 const PropertyContactForm = ({ property }) => {
+  const { data: session } = useSession();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [phone, setPhone] = useState("");
   const [wasSubmitted, setWasSubmitted] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const data = {
@@ -21,15 +24,41 @@ const PropertyContactForm = ({ property }) => {
       property: property._id,
     };
 
-    console.log(data);
+    try {
+      const res = await fetch(`/api/messages`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
 
-    setWasSubmitted(true);
+      if (res.staus === 200) {
+        toast.success("Message sent successfully");
+        setWasSubmitted(true);
+      } else if (res.status === 400 || res.status === 401) {
+        const dataObj = await res.json();
+        toast.error(dataObj.message);
+      } else {
+        toast.error("Error sending form");
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error("Error sending form");
+    } finally {
+      setName("");
+      setEmail("");
+      setMessage("");
+      setPhone("");
+    }
   };
 
   return (
     <div className="bg-white p-6 rounded-lg shadow-md">
       <h3 className="text-xl font-bold mb-6">Contact Property Manager</h3>
-      {wasSubmitted ? (
+      {!session ? (
+        <p>You must be logged in</p>
+      ) : wasSubmitted ? (
         <p className="text-green-500 mb-4">
           Your message has been send successfully
         </p>
