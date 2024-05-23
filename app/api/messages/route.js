@@ -9,12 +9,16 @@ export const POST = async (request) => {
   try {
     await connectDB();
 
-    const { email, phone, message, property, recipient } = request.json();
+    const { name, email, phone, message, property, recipient } =
+      await request.json();
 
     const sessionUser = await getSessionUser();
 
     if (!sessionUser || !sessionUser.user) {
-      return new Response("Unauthorized", { status: 401 });
+      return new Response(
+        JSON.stringify({ message: "You must be logged in to send a message" }),
+        { status: 401 }
+      );
     }
 
     const { user } = sessionUser;
@@ -27,10 +31,12 @@ export const POST = async (request) => {
       );
     }
 
+    // Create new Message
     const newMessage = new Message({
       sender: user.id,
       recipient,
       property,
+      name,
       email,
       phone,
       body: message,
