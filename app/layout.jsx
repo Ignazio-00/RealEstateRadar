@@ -2,7 +2,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import AuthProvider from "@/components/AuthProvider";
 import { ToastContainer } from "react-toastify";
-import { GlobalProvider } from "@/context/GlobalContext";
+import { GlobalProvider } from "@/contexts/GlobalContext";
 import "react-toastify/dist/ReactToastify.css";
 import "@/assets/styles/globals.css";
 
