@@ -9,7 +9,12 @@ export function GlobalProvider({ children }) {
   const [unreadCount, setUnreadCount] = useState(0);
 
   return (
-    <GlobalContext.Provider vlaue={{ unreadCount, setUnreadCount }}>
+    <GlobalContext.Provider
+      value={{
+        unreadCount,
+        setUnreadCount,
+      }}
+    >
       {children}
     </GlobalContext.Provider>
   );
