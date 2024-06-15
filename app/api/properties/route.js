@@ -8,8 +8,8 @@ export const GET = async (request) => {
   try {
     await connectDB();
 
-    const page = request.nextUrl.searchParams.get("page" || 1);
-    const pageSize = request.nextUrl.searchParams.get("pageSize" || 3);
+    const page = request.nextUrl.searchParams.get("page") || 1;
+    const pageSize = request.nextUrl.searchParams.get("pageSize") || 3;
 
     const skip = (page - 1) * pageSize;
 
