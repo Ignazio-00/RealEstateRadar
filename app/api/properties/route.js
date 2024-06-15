@@ -2,15 +2,27 @@ import connectDB from "@/config/database";
 import Property from "@/models/Property";
 import { getSessionUser } from "@/utils/getSessionUser";
 import cloudinary from "@/config/cloudinary";
+import { pages } from "next/dist/build/templates/app-page";
 
 // GET /api/properties
 export const GET = async (request) => {
   try {
     await connectDB();
 
-    const properties = await Property.find({});
+    const page = request.nextUrl.searchParams.get("page" || 1);
+    const pageSize = request.nextUrl.searchParams.get("pageSize" || 3);
 
-    return new Response(JSON.stringify(properties), { status: 200 });
+    const skip = (page - 1) * pageSize;
+
+    const total = await Property.countDocuments({});
+    const properties = await Property.find({}).skip(skip).limit(pageSize);
+
+    const result = {
+      total,
+      properties,
+    };
+
+    return new Response(JSON.stringify(result), { status: 200 });
   } catch (error) {
     console.log(error);
     return new Response("An error occurred", { status: 500 });
