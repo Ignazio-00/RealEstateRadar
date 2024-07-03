@@ -26,7 +26,7 @@ async function fetchProperties({ showFeatured = false } = {}) {
 // Fetch single property
 async function fetchProperty(id) {
   try {
-    // Handle cxase where domain is not available yet
+    // Handle case where domain is not available yet
     if (!apiDomain) {
       return null;
     }
