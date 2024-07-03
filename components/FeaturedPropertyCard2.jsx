@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import {
   FaBed,
   FaBath,
@@ -21,9 +22,12 @@ const FeaturedPropertyCard2 = ({ property }) => {
   };
   return (
     <div className="bg-white rounded-xl shadow-md relative flex flex-col md:flex-row">
-      <img
-        src="images/properties/f1.jpg"
+      <Image
+        src={property.images[0]}
         alt=""
+        width={0}
+        height={0}
+        sizes="100wv"
         className="object-cover rounded-t-xl md:rounded-tr-none md:rounded-l-xl w-full md:w-2/5"
       />
       <div className="p-6">
