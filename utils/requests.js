@@ -3,7 +3,7 @@ const apiDomain = process.env.NEXT_PUBLIC_API_DOMAIN || null;
 // Fetch all properties
 async function fetchProperties({ showFeatured = false } = {}) {
   try {
-    // Handle cxase where domain is not available yet
+    // Handle case where domain is not available yet
     if (!apiDomain) {
       return [];
     }
