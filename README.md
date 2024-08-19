@@ -96,10 +96,6 @@ Enhance your development experience with these recommended VS Code extensions:
 
 - Maintains the case of text when using multiple cursors, a subtle yet handy feature.
 
-## Additional Tools (Optional)
-
-While not required for this course, the following tools are highly recommended to enhance your coding experience:
-
 #### GitHub Copilot
 
 - An AI-powered code assistant that suggests code and functions.
