@@ -3,8 +3,7 @@
 RealEstateRadar is a modern property listing platform built with Next.js 14, allowing users to browse, list, and manage real estate properties with features like property search, user authentication, messaging, and interactive maps.
 
 ## Architecture
-
-[System Architecture Diagram would go here - showing the interaction between Frontend (Next.js), Backend (API Routes), Database (MongoDB), and External Services (Cloudinary, Mapbox)]
+![RealEstateRadar architecture](https://github.com/user-attachments/assets/35745c9e-bdb7-4c03-96c0-c4d340c26e21)
 
 ## Tech Stack
 
