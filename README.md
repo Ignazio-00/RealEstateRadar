@@ -50,23 +50,30 @@ RealEstateRadar is a modern property listing platform built with Next.js 14, all
 
 ### Environment Variables
 
-Create a `.env.local` file in the root directory with:
+Create a `.env.local` file in the root directory and add the following variables:
 
-MongoDB
+#### Database Configuration
+
 MONGODB_URI=your_mongodb_connection_string
 
-Authentication
+#### Authentication Settings
+
+Google OAuth
 GOOGLE_CLIENT_ID=your_google_client_id
 GOOGLE_CLIENT_SECRET=your_google_client_secret
+
+NextAuth Configuration
 NEXTAUTH_URL=http://localhost:3000
 NEXTAUTH_SECRET=your_nextauth_secret
 
-Cloudinary
+#### External Services
+
+Cloudinary Configuration
 CLOUDINARY_CLOUD_NAME=your_cloud_name
 CLOUDINARY_API_KEY=your_api_key
 CLOUDINARY_API_SECRET=your_api_secret
 
-Mapbox
+Mapbox Configuration
 NEXT_PUBLIC_MAPBOX_TOKEN=your_mapbox_token
 
 ### Installation
